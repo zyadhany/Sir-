@@ -1,5 +1,10 @@
 #include "Sir.h"
 
+/**
+ * @brief Run the Sir# interpreter console.
+ * 
+ * @return void
+ */
 void runConsole() {
     int lineCount = 0;
     string line;
@@ -7,7 +12,11 @@ void runConsole() {
     cout << "Welcome to Sir# Interpreter! Type 'exit' to quit.\n";
     while (true) {
         cout << "sir#[" << lineCount++ << "]> ";
-        getline(cin, line);
+        
+        if (!getline(cin, line)) {
+            cout << "Goodbye!\n";
+            break;
+        }
 
         if (line == "exit") {
             cout << "Goodbye!\n";
@@ -15,15 +24,13 @@ void runConsole() {
         }
 
         try {
-            cout << "Output: " << line << endl;
-            //interpret(line);
+            interpret(line);
         } catch (const exception &e) {
             cerr << "Error[Line " << lineCount << "]: " << e.what() << endl;
         }
     }
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     runConsole();
-    return 0;
 }

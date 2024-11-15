@@ -1,2 +1,2 @@
-g++ .\console.cpp -o sir.exe
+g++ .\src\*.cpp
 .\sir.exe
