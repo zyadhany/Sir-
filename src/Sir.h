@@ -26,4 +26,10 @@ struct FUNCTION{
     BlockCode block;
 };
 
+/** Variables **/
+double GetVariable(string name);
+
+/** opprations  **/
+double MakeOperation(string expresion); 
+
 #endif // SIR_H
