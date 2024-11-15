@@ -19,7 +19,7 @@ bool IsValidBarnaces(string expresion)
 
 bool IsOperator(char c)
 {
-    return c == '+' || c == '-' || c == '*' || c == '/';
+    return c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '%' || c == '&' || c == '|' ||c == '<' || c == '>';
 }
 
 bool IsValidOperation(string expresion)
@@ -30,11 +30,11 @@ bool IsValidOperation(string expresion)
         {
             if(i == 0 || i == expresion.size() - 1)
             {
-                threw invalid_argument("operator can't be at the start or the end of the expresion");
+                throw invalid_argument("operator can't be at the start or the end of the expresion");
             }
             if(IsOperator(expresion[i - 1]) || IsOperator(expresion[i + 1]) || expresion[i - 1] == '(' || expresion[i + 1] == ')')
             {
-                threw invalid_argument("two operators can't be next to each other");
+                throw invalid_argument("two operators can't be next to each other");
             }
         }
     }

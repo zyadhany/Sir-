@@ -1,4 +1,5 @@
 #ifndef SIR_H
+#define SIR_H
 
 #include <bits/stdc++.h>
 using namespace std;
