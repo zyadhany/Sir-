@@ -35,6 +35,7 @@ void executeToken(vector<string> &tokens);
 double GetVariable(string name);
 
 /** opprations  **/
+bool IsValidOperation(string expresion);
 double MakeOperation(string expresion); 
 
 /** Parsing **/
