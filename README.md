@@ -29,9 +29,11 @@ Sir# is designed with simplicity and readability in mind. It provides developers
 
 To install Sir#, follow these steps:
 
-1. Clone the Sir# repository from GitHub: git clone https://github.com/yourusername/sir-sharp.git
-2. Navigate to the cloned directory:
+1. Clone the Sir# repository from GitHub:  
+   `git clone https://github.com/yourusername/sir-sharp.git`
 
+2. Navigate to the newly cloned `sir-sharp` directory:  
+   `cd sir-sharp`
 ## Syntax Overview
 
 ### Variables
@@ -42,20 +44,19 @@ string name = "John";
 
 ### Conditional Statements
 ```sirsharp
-if age > 18 {
-    print("You are an adult.");
-} 
-else {
+if age > 18 
+    print("You are an adult."); 
+else 
     print("You are a minor.");
-}
+endif
 ```
 
 ### Loops
 ```sirsharp
-for int i = 0; i < 5; i++
-{
-    print(i);
-}
+while a > 5
+    print("a")
+    a = a - 1
+endloop
 ```
 
 ## Contributing
