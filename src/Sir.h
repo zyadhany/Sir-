@@ -4,7 +4,6 @@
 using namespace std;
 
 
-void interpret(const string &line);
 
 struct BlockCode {
     vector<string> code;
@@ -26,10 +25,19 @@ struct FUNCTION{
     BlockCode block;
 };
 
+/** Interpting **/
+void interpret(const string &line);
+
+/** executing **/
+void executeToken(vector<string> &tokens);
+
 /** Variables **/
 double GetVariable(string name);
 
 /** opprations  **/
 double MakeOperation(string expresion); 
+
+/** Parsing **/
+vector<string> parseCommandLine(const string &line);
 
 #endif // SIR_H
