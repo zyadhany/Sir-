@@ -13,6 +13,17 @@ Variable GetVariable(string name);
 Variable SetVariable(Variable var);
 
 
+/** Num Variables **/
+Variable add_Number(const Variable &v1, const Variable &v2);
+Variable sub_Number(const Variable &v1, const Variable &v2);
+Variable mul_Number(const Variable &v1, const Variable &v2);
+Variable div_Number(const Variable &v1, const Variable &v2);
+
+/** Str Variables **/
+Variable add_String(const Variable &v1, const Variable &v2);
+
+
+
 class Variable{
 private:
     string name;
@@ -58,7 +69,56 @@ public:
     Variable getCopy() const {
         return Variable(name, type, value);
     }
+    
+    Variable& operator=(const Variable &var) {
+        if (this->type != var.type) {
+            throw runtime_error("Cannot assign " + var.type + " to " + this->type);
+        }
+        this->value = var.value;
+        return *this;
+    }
 
+    Variable operator+(const Variable &var) {
+        if (this->type != var.type) {
+            throw runtime_error("Cannot add " + var.type + " to " + this->type);
+        }
+
+        if (this->type == "num") {
+            return add_Number(*this, var);
+        } else if (this->type == "str") {
+            return add_String(*this, var);
+        }
+    }
+
+    Variable operator-(const Variable &var) {
+        if (this->type != var.type) {
+            throw runtime_error("Cannot subtract " + var.type + " from " + this->type);
+        }
+
+        if (this->type == "num") {
+            return sub_Number(*this, var);
+        }
+    }
+
+    Variable operator*(const Variable &var) {
+        if (this->type != var.type) {
+            throw runtime_error("Cannot multiply " + var.type + " with " + this->type);
+        }
+
+        if (this->type == "num") {
+            return mul_Number(*this, var);
+        }
+    }
+
+    Variable operator/(const Variable &var) {
+        if (this->type != var.type) {
+            throw runtime_error("Cannot divide " + var.type + " by " + this->type);
+        }
+
+        if (this->type == "num") {
+            return div_Number(*this, var);
+        }
+    }
 };
 
 

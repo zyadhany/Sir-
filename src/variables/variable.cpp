@@ -17,12 +17,11 @@ Variable ConvertToVariable(const string &expresion){
 
     if (expresion.size() > 0 && expresion[0] == '-') cntdigit++;
 
-    Variable var = Variable("temp", "string", expresion);
     if (cntdigit + cntdot == expresion.size()) {
-        var = Variable("temp", "number", expresion);
-    } else {
+        return Variable("temp", "num", expresion);
+    }
 
-    return var;
+    return Variable("temp", "str", expresion);
 }
 
 Variable GetVariable(string name){
@@ -33,7 +32,7 @@ Variable GetVariable(string name){
             break;
         }
     }
-
+    
     if (index == -1) {
         throw runtime_error("Variable " + name + " not found");
     }

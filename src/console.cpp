@@ -34,6 +34,15 @@ void runConsole() {
 int main(int argc, char *argv[]) {
     // runConsole();
 
+    Variable v1 = ConvertToVariable("444, 4");
+    Variable v2 = ConvertToVariable("qq");
+    Variable v3 = ConvertToVariable("sfdg");
+    
+
+    v3 = v1 + v3;
+
+    v3.print();
+
     return 0;
 }
 
