@@ -93,7 +93,7 @@ int main(int argc, char *argv[]) {
             continue;
         }
 
-        res.print();
+        cout << res << '\n';
     }
     
     return 0;

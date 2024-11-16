@@ -1,14 +1,20 @@
-#include "../Sir.h"
+#ifndef BASE_COMMAND_H
+#define BASE_COMMAND_H
+
+#include <bits/stdc++.h>
+#include "../variables/variable.h"
+
+using namespace std;
 
 class Base_Command {
+    protected:
+        vector<string> args;
+    
     public:
         Base_Command(vector<string> args) {
             this->args = args;
         }
-
-        ~Base_Command() {
-            cout << "Base_Command destructor" << endl;
-        }
+        ~Base_Command() = default;
 
         void run() {
             cout << "Base_Command run" << endl;
@@ -31,6 +37,6 @@ class Base_Command {
 
             return expression;
         }
-    private:
-        vector<string> args;
 };
+
+#endif
