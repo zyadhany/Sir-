@@ -2,6 +2,7 @@
 #define SIR_H
 
 #include <bits/stdc++.h>
+#include "commands/command.h"
 #include "variables/variable.h"
 
 using namespace std;
