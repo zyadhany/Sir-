@@ -305,3 +305,11 @@ Variable bitwise_rshift_Number(const Variable &v1, const Variable &v2) {
 
     return getNumVariable(res);
 }
+
+Variable and_operator(const Variable &v1, const Variable &v2) {
+    return getNumVariable(v1.getValue() == "1" && v2.getValue() == "1" ? "1" : "0");
+}
+
+Variable or_operator(const Variable &v1, const Variable &v2) {
+    return getNumVariable(v1.getValue() == "1" || v2.getValue() == "1" ? "1" : "0");
+}
