@@ -1,6 +1,7 @@
 #include "variable.h"
 
 vector<Variable> variables;
+map<operator_k, Variable (*)(const Variable&, const Variable&)> operations;
 
 Variable ConvertToVariable(const string &expresion){
     int cntdot = 0;
@@ -54,4 +55,28 @@ Variable SetVariable(Variable var){
     }
     variables.push_back(var);
     return var;
+}
+
+Variable MakeOperation(const Variable &v1, const Variable &v2, const string &op) {
+    if (v1.getType() != v2.getType()) {
+        throw runtime_error("Cannot perform operation on different types");
+    }
+
+    if (v1.getType() == "num") {
+        if (op == "+") {
+            return add_Number(v1, v2);
+        } else if (op == "-") {
+            return sub_Number(v1, v2);
+        } else if (op == "*") {
+            return mul_Number(v1, v2);
+        } else if (op == "/") {
+            return div_Number(v1, v2);
+        }
+    } else if (v1.getType() == "str") {
+        if (op == "+") {
+            return add_String(v1, v2);
+        }
+    }
+
+    throw runtime_error("Invalid operation");
 }

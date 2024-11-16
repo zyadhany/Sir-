@@ -22,6 +22,26 @@ Variable div_Number(const Variable &v1, const Variable &v2);
 /** Str Variables **/
 Variable add_String(const Variable &v1, const Variable &v2);
 
+/** Operator **/
+struct operator_k
+{
+    string op;
+    string type1;
+    string type2;
+
+    operator_k(const string &op, const string &type1, const string &type2)
+        : op(op), type1(type1), type2(type2) {}
+
+    bool operator<(const operator_k &other) const
+    {
+        if (op != other.op)
+            return op < other.op;
+        if (type1 != other.type1)
+            return type1 < other.type1;
+        return type2 < other.type2;
+    }
+};
+extern map<operator_k, Variable (*)(const Variable&, const Variable&)> operations;
 
 
 class Variable{
@@ -88,6 +108,8 @@ public:
         } else if (this->type == "str") {
             return add_String(*this, var);
         }
+
+        throw runtime_error("Cannot add " + this->type + " to " + var.type);
     }
 
     Variable operator-(const Variable &var) {
