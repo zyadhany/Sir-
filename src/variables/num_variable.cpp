@@ -231,7 +231,7 @@ Variable mod_Number(const Variable &v1, const Variable &v2) {
     return getNumVariable(res);
 }
 
-Variable and_Number(const Variable &v1, const Variable &v2) {
+Variable bitwise_and_Number(const Variable &v1, const Variable &v2) {
     if (v1.getType() != "num") throw runtime_error("v1 is not a number");
     if (v2.getType() != "num") throw runtime_error("v2 is not a number");
 
@@ -246,7 +246,7 @@ Variable and_Number(const Variable &v1, const Variable &v2) {
     return getNumVariable(res);
 }
 
-Variable or_Number(const Variable &v1, const Variable &v2) {
+Variable bitwise_or_Number(const Variable &v1, const Variable &v2) {
     if (v1.getType() != "num") throw runtime_error("v1 is not a number");
     if (v2.getType() != "num") throw runtime_error("v2 is not a number");
 
@@ -261,7 +261,7 @@ Variable or_Number(const Variable &v1, const Variable &v2) {
     return getNumVariable(res);
 }
 
-Variable xor_Number(const Variable &v1, const Variable &v2) {
+Variable bitwise_xor_Number(const Variable &v1, const Variable &v2) {
     if (v1.getType() != "num") throw runtime_error("v1 is not a number");
     if (v2.getType() != "num") throw runtime_error("v2 is not a number");
 
@@ -276,7 +276,7 @@ Variable xor_Number(const Variable &v1, const Variable &v2) {
     return getNumVariable(res);
 }
 
-Variable lshift_Number(const Variable &v1, const Variable &v2) {
+Variable bitwise_lshift_Number(const Variable &v1, const Variable &v2) {
     if (v1.getType() != "num") throw runtime_error("v1 is not a number");
     if (v2.getType() != "num") throw runtime_error("v2 is not a number");
 
@@ -291,7 +291,7 @@ Variable lshift_Number(const Variable &v1, const Variable &v2) {
     return getNumVariable(res);
 }
 
-Variable rshift_Number(const Variable &v1, const Variable &v2) {
+Variable bitwise_rshift_Number(const Variable &v1, const Variable &v2) {
     if (v1.getType() != "num") throw runtime_error("v1 is not a number");
     if (v2.getType() != "num") throw runtime_error("v2 is not a number");
 

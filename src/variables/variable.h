@@ -19,11 +19,11 @@ Variable sub_Number(const Variable &v1, const Variable &v2);
 Variable mul_Number(const Variable &v1, const Variable &v2);
 Variable div_Number(const Variable &v1, const Variable &v2);
 Variable mod_Number(const Variable &v1, const Variable &v2);
-Variable and_Number(const Variable &v1, const Variable &v2);
-Variable or_Number(const Variable &v1, const Variable &v2);
-Variable xor_Number(const Variable &v1, const Variable &v2);
-Variable lshift_Number(const Variable &v1, const Variable &v2);
-Variable rshift_Number(const Variable &v1, const Variable &v2);
+Variable bitwise_and_Number(const Variable &v1, const Variable &v2);
+Variable bitwise_or_Number(const Variable &v1, const Variable &v2);
+Variable bitwise_xor_Number(const Variable &v1, const Variable &v2);
+Variable bitwise_lshift_Number(const Variable &v1, const Variable &v2);
+Variable bitwise_rshift_Number(const Variable &v1, const Variable &v2);
 Variable greater_Number(const Variable &v1, const Variable &v2);
 Variable less_Number(const Variable &v1, const Variable &v2);
 Variable greater_equal_Number(const Variable &v1, const Variable &v2);
@@ -196,32 +196,45 @@ public:
     }
 
     Variable operator<(const Variable &var) {
-        return MakeOperation(*this, Variable("temp", "num", "0"), "<");
+        return MakeOperation(*this, var, "<");
     }
 
     Variable operator>(const Variable &var) {
-        return MakeOperation(*this, Variable("temp", "num", "0"), ">");
+        return MakeOperation(*this, var, ">");
     }
 
     Variable operator<=(const Variable &var) {
-        return MakeOperation(*this, Variable("temp", "num", "0"), "<=");
+        return MakeOperation(*this, var, "<=");
     }
 
     Variable operator>=(const Variable &var) {
-        return MakeOperation(*this, Variable("temp", "num", "0"), ">=");
+        return MakeOperation(*this, var, ">=");
     }
 
     Variable operator==(const Variable &var) {
-        return MakeOperation(*this, Variable("temp", "num", "0"), "==");
+        return MakeOperation(*this, var, "==");
     }
 
     Variable operator!=(const Variable &var) {
-        return MakeOperation(*this, Variable("temp", "num", "0"), "!=");
+        return MakeOperation(*this, var, "!=");
+    }
+
+    Variable operator&&(const Variable &var) {
+        return MakeOperation(*this, var, "&&");
+    }
+
+    Variable operator||(const Variable &var) {
+        return MakeOperation(*this, var, "||");
     }
 
     Variable operator!() {
-        return MakeOperation(*this, Variable("temp", "num", "0"), "!");
+        return MakeOperation(*this, *this, "!");
     }
+
+    Variable operator~() {
+        return MakeOperation(*this, *this, "~");
+    }
+    
 
 
 };

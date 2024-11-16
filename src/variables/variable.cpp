@@ -15,7 +15,14 @@ map<operator_k, Variable (*)(const Variable&, const Variable&)> operations = {
     {operator_k("|", "num", "num"), or_Number},
     {operator_k("^", "num", "num"), xor_Number},
     {operator_k("<<", "num", "num"), lshift_Number},
-    {operator_k(">>", "num", "num"), rshift_Number}
+    {operator_k(">>", "num", "num"), rshift_Number},
+    {operator_k("<", "num", "num"), less_Number},
+    {operator_k(">", "num", "num"), greater_Number},
+    {operator_k("<=", "num", "num"), less_equal_Number},
+    {operator_k(">=", "num", "num"), greater_equal_Number},
+    {operator_k("==", "num", "num"), equal_Number},
+    {operator_k("!=", "num", "num"), not_equal_Number},
+
 };
 
 Variable ConvertToVariable(const string &expresion){
@@ -79,3 +86,5 @@ Variable MakeOperation(const Variable &v1, const Variable &v2, const string &op)
     }
     throw runtime_error("Operation " + op + " not supported for " + v1.getType() + " and " + v2.getType());
 }
+
+

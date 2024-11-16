@@ -66,7 +66,29 @@ int main(int argc, char *argv[]) {
             res = v1 << v2;
         } else if (opp == ">>") {
             res = v1 >> v2;
-        } else {
+        } 
+        else if (opp == "<") {
+            res = v1 < v2;
+        } else if (opp == ">") {
+            res = v1 > v2;
+        } else if (opp == "<=") {
+            res = v1 <= v2;
+        } else if (opp == ">=") {
+            res = v1 >= v2;
+        } else if (opp == "==") {
+            res = v1 == v2;
+        } else if (opp == "!=") {
+            res = v1 != v2;
+        } else if (opp == "&&") {
+            res = v1 && v2;
+        } else if (opp == "||") {
+            res = v1 || v2;
+        } else if (opp == "!") {
+            res = !v1;
+        } else if (opp == "~") {
+            res = ~v1;
+        }
+        else {
             cout << "Invalid operation\n";
             continue;
         }
