@@ -18,9 +18,19 @@ Variable add_Number(const Variable &v1, const Variable &v2);
 Variable sub_Number(const Variable &v1, const Variable &v2);
 Variable mul_Number(const Variable &v1, const Variable &v2);
 Variable div_Number(const Variable &v1, const Variable &v2);
+Variable mod_Number(const Variable &v1, const Variable &v2);
+Variable and_Number(const Variable &v1, const Variable &v2);
+Variable or_Number(const Variable &v1, const Variable &v2);
+Variable xor_Number(const Variable &v1, const Variable &v2);
+Variable lshift_Number(const Variable &v1, const Variable &v2);
+Variable rshift_Number(const Variable &v1, const Variable &v2);
+
+
 
 /** Str Variables **/
 Variable add_String(const Variable &v1, const Variable &v2);
+Variable sub_String(const Variable &v1, const Variable &v2);
+Variable mul_String(const Variable &v1, const Variable &v2);
 
 
 
