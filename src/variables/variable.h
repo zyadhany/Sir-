@@ -30,7 +30,8 @@ Variable greater_equal_Number(const Variable &v1, const Variable &v2);
 Variable less_equal_Number(const Variable &v1, const Variable &v2);
 Variable equal_Number(const Variable &v1, const Variable &v2);
 Variable not_equal_Number(const Variable &v1, const Variable &v2);
-Variable and_operator(const Variable &v1, const Variable &v2);
+Variable Logical_and(const Variable &v1, const Variable &v2);
+Variable Logical_or(const Variable &v1, const Variable &v2);
 
 
 /** Str Variables **/

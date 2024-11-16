@@ -306,10 +306,12 @@ Variable bitwise_rshift_Number(const Variable &v1, const Variable &v2) {
     return getNumVariable(res);
 }
 
-Variable and_operator(const Variable &v1, const Variable &v2) {
-    return getNumVariable(v1.getValue() == "1" && v2.getValue() == "1" ? "1" : "0");
+Variable Logical_and(const Variable &v1, const Variable &v2) {
+    bool res = (!(v1.isNull()) && !(v2.isNull()));
+    return getNumVariable(res ? "1" : "0");
 }
 
-Variable or_operator(const Variable &v1, const Variable &v2) {
-    return getNumVariable(v1.getValue() == "1" || v2.getValue() == "1" ? "1" : "0");
+Variable Logical_or(const Variable &v1, const Variable &v2) {
+    bool res = ((!v1.isNull()) || !(v2.isNull()));
+    return getNumVariable(res ? "1" : "0");
 }

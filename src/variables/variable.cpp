@@ -22,6 +22,15 @@ map<operator_k, Variable (*)(const Variable&, const Variable&)> operations = {
     {operator_k(">=", "num", "num"), greater_equal_Number},
     {operator_k("==", "num", "num"), equal_Number},
     {operator_k("!=", "num", "num"), not_equal_Number},
+    {operator_k("&&", "num", "num"), Logical_and},
+    {operator_k("||", "num", "num"), Logical_or},
+    {operator_k("&&", "str", "str"), Logical_and},
+    {operator_k("||", "str", "str"), Logical_or},
+    {operator_k("&&", "num", "str"), Logical_and},
+    {operator_k("||", "num", "str"), Logical_or},
+    {operator_k("&&", "str", "num"), Logical_and},
+    {operator_k("||", "str", "num"), Logical_or},
+
 
 };
 
