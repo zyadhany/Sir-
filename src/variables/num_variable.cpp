@@ -4,6 +4,73 @@ Variable getNumVariable(string num) {
     return Variable("temp", "num", num);
 }
 
+Variable greater_Number(const Variable &v1, const Variable &v2) {
+    if (v1.getType() != "num") throw runtime_error("v1 is not a number");
+    if (v2.getType() != "num") throw runtime_error("v2 is not a number");
+
+    string res = "0";
+    string num1 = v1.getValue();
+    string num2 = v2.getValue();
+    if(num1.size() > num2.size()){
+        res = "1";
+    } else if(num1.size() < num2.size()){
+        res = "0";
+    } else {
+        for(int i = 0; i < num1.size(); i++){
+            if(num1[i] > num2[i]){
+                res = "1";
+                break;
+            } else if(num1[i] < num2[i]){
+                res = "0";
+                break;
+            }
+        }
+    }
+    return getNumVariable(res);
+}
+
+Variable less_Number(const Variable &v1, const Variable &v2) {
+    return greater_Number(v2, v1);
+}
+
+Variable greater_equal_Number(const Variable &v1, const Variable &v2) {
+    if (v1.getType() != "num") throw runtime_error("v1 is not a number");
+    if (v2.getType() != "num") throw runtime_error("v2 is not a number");
+
+    string res = "1";
+    string num1 = v1.getValue();
+    string num2 = v2.getValue();
+    if(num1.size() > num2.size()){
+        res = "1";
+    } else if(num1.size() < num2.size()){
+        res = "0";
+    } else {
+        for(int i = 0; i < num1.size(); i++){
+            if(num1[i] > num2[i]){
+                res = "1";
+                break;
+            } else if(num1[i] < num2[i]){
+                res = "0";
+                break;
+            }
+        }
+    }
+    return getNumVariable(res);
+}
+
+Variable less_equal_Number(const Variable &v1, const Variable &v2) {
+    return greater_equal_Number(v2, v1);
+}
+
+Variable equal_Number(const Variable &v1, const Variable &v2) {
+    return greater_equal_Number(v1, v2) * greater_equal_Number(v2, v1);
+}
+
+Variable not_equal_Number(const Variable &v1, const Variable &v2) {
+    return greater_Number(v1, v2) + greater_Number(v2, v1);
+}
+
+
 // add 2 numbers as string and return the result 
 string add_String(const string &num1, const string &num2) {
     string res;

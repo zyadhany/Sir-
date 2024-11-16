@@ -24,6 +24,13 @@ Variable or_Number(const Variable &v1, const Variable &v2);
 Variable xor_Number(const Variable &v1, const Variable &v2);
 Variable lshift_Number(const Variable &v1, const Variable &v2);
 Variable rshift_Number(const Variable &v1, const Variable &v2);
+Variable greater_Number(const Variable &v1, const Variable &v2);
+Variable less_Number(const Variable &v1, const Variable &v2);
+Variable greater_equal_Number(const Variable &v1, const Variable &v2);
+Variable less_equal_Number(const Variable &v1, const Variable &v2);
+Variable equal_Number(const Variable &v1, const Variable &v2);
+Variable not_equal_Number(const Variable &v1, const Variable &v2);
+
 
 /** Str Variables **/
 Variable add_String(const Variable &v1, const Variable &v2);
@@ -187,6 +194,36 @@ public:
     Variable operator>>=(const Variable &var) {
         return *this = *this >> var;
     }
+
+    Variable operator<(const Variable &var) {
+        return MakeOperation(*this, Variable("temp", "num", "0"), "<");
+    }
+
+    Variable operator>(const Variable &var) {
+        return MakeOperation(*this, Variable("temp", "num", "0"), ">");
+    }
+
+    Variable operator<=(const Variable &var) {
+        return MakeOperation(*this, Variable("temp", "num", "0"), "<=");
+    }
+
+    Variable operator>=(const Variable &var) {
+        return MakeOperation(*this, Variable("temp", "num", "0"), ">=");
+    }
+
+    Variable operator==(const Variable &var) {
+        return MakeOperation(*this, Variable("temp", "num", "0"), "==");
+    }
+
+    Variable operator!=(const Variable &var) {
+        return MakeOperation(*this, Variable("temp", "num", "0"), "!=");
+    }
+
+    Variable operator!() {
+        return MakeOperation(*this, Variable("temp", "num", "0"), "!");
+    }
+
+
 };
 
 
