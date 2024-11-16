@@ -1,5 +1,6 @@
 {
     "files.associations": {
+<<<<<<< HEAD
         "iostream": "cpp",
         "xstring": "cpp",
         "stdexcept": "cpp",
@@ -98,4 +99,9 @@
         "xstddef": "cpp",
         "xtree": "cpp"
     }
+=======
+        "iostream": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+>>>>>>> 21b4d53df999f9bdd475dfd83857b55b7abc27af
 }

@@ -1,4 +1,5 @@
 #ifndef SIR_H
+#define SIR_H
 
 #include <bits/stdc++.h>
 #include "variables/variable.h"
@@ -33,6 +34,7 @@ void interpret(const string &line);
 void executeToken(vector<string> &tokens);
 
 /** opprations  **/
+bool IsValidOperation(string expresion);
 double MakeOperation(string expresion); 
 
 /** Parsing **/
