@@ -1,7 +1,22 @@
 #include "variable.h"
 
 vector<Variable> variables;
-map<operator_k, Variable (*)(const Variable&, const Variable&)> operations;
+map<operator_k, Variable (*)(const Variable&, const Variable&)> operations = {
+    {operator_k("+", "num", "num"), add_Number},
+    {operator_k("-", "num", "num"), sub_Number},
+    {operator_k("*", "num", "num"), mul_Number},
+    {operator_k("/", "num", "num"), div_Number},
+    {operator_k("+", "str", "str"), add_String},
+    {operator_k("-", "str", "str"), sub_String},
+    {operator_k("*", "str", "num"), mul_str_num},
+    {operator_k("*", "num", "str"), mul_num_str},
+    {operator_k("%", "num", "num"), mod_Number},
+    {operator_k("&", "num", "num"), and_Number},
+    {operator_k("|", "num", "num"), or_Number},
+    {operator_k("^", "num", "num"), xor_Number},
+    {operator_k("<<", "num", "num"), lshift_Number},
+    {operator_k(">>", "num", "num"), rshift_Number}
+};
 
 Variable ConvertToVariable(const string &expresion){
     int cntdot = 0;
@@ -58,25 +73,9 @@ Variable SetVariable(Variable var){
 }
 
 Variable MakeOperation(const Variable &v1, const Variable &v2, const string &op) {
-    if (v1.getType() != v2.getType()) {
-        throw runtime_error("Cannot perform operation on different types");
+    operator_k key(op, v1.getType(), v2.getType());
+    if (operations.find(key) != operations.end()) {
+        return operations[key](v1, v2);
     }
-
-    if (v1.getType() == "num") {
-        if (op == "+") {
-            return add_Number(v1, v2);
-        } else if (op == "-") {
-            return sub_Number(v1, v2);
-        } else if (op == "*") {
-            return mul_Number(v1, v2);
-        } else if (op == "/") {
-            return div_Number(v1, v2);
-        }
-    } else if (v1.getType() == "str") {
-        if (op == "+") {
-            return add_String(v1, v2);
-        }
-    }
-
-    throw runtime_error("Invalid operation");
+    throw runtime_error("Operation " + op + " not supported for " + v1.getType() + " and " + v2.getType());
 }

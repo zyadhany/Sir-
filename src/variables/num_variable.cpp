@@ -213,5 +213,3 @@ Variable rshift_Number(const Variable &v1, const Variable &v2) {
 
     return getNumVariable(res);
 }
-
-
