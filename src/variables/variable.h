@@ -99,6 +99,15 @@ public:
         return type;
     }
 
+    bool isNull() const {
+        if (type == "str") {
+            return value == "";
+        } else if (type == "num") {
+            return value == "0";
+        }
+        return type == "null";
+    }
+
     void print() const {
         cout << name << " " << type << " " << value << endl;
     }
@@ -108,10 +117,22 @@ public:
     }
     
     Variable& operator=(const Variable &var) {
-        if (this->type != var.type) {
-            throw runtime_error("Cannot assign " + var.type + " to " + this->type);
-        }
-        this->value = var.value;
+        name = var.name;
+        type = var.type;
+        value = var.value;
+
+        return *this;
+    }
+
+    Variable& operator=(const string &newValue) {
+        type = "str";
+        value = newValue;
+        return *this;
+    }
+
+    Variable& operator=(long double newValue) {
+        type = "num";
+        value = to_string(newValue);
         return *this;
     }
 
@@ -234,9 +255,11 @@ public:
     Variable operator~() {
         return MakeOperation(*this, *this, "~");
     }
-    
 
-
+    friend ostream& operator<<(ostream &os, const Variable &var) {
+        os << var.value;
+        return os;
+    }
 };
 
 
