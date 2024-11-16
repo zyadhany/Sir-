@@ -34,8 +34,8 @@ void interpret(const string &line);
 void executeToken(vector<string> &tokens);
 
 /** opprations  **/
-bool IsValidOperation(string expresion);
-double MakeOperation(string expresion); 
+// bool IsValidOperation(string expresion);
+// double MakeOperation(string expresion); 
 
 /** Parsing **/
 vector<string> parseCommandLine(const string &line);

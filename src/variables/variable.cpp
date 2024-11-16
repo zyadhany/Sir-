@@ -3,8 +3,25 @@
 vector<Variable> variables;
 
 Variable ConvertToVariable(const string &expresion){
-    // todo: make type of intigers
-    Variable var = Variable("temp", "str", expresion);
+    int cntdot = 0;
+    int cntdigit = 0;
+    
+    for (auto c : expresion) {
+        if (c == '.') {
+            cntdot++;
+        } else if (isdigit(c)) {
+            cntdigit++;
+        }
+    }
+
+
+    if (expresion.size() > 0 && expresion[0] == '-') cntdigit++;
+
+    Variable var = Variable("temp", "string", expresion);
+    if (cntdigit + cntdot == expresion.size()) {
+        var = Variable("temp", "number", expresion);
+    } else {
+
     return var;
 }
 
