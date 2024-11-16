@@ -72,10 +72,17 @@ Variable mul_Number(const Variable &v1, const Variable &v2) {
     string res;
     string num1 = v1.getValue();
     string num2 = v2.getValue();
-    long long n1 = stoll(num1);
-    long long n2 = stoll(num2);
-    long long mul = n1 * n2;
-    res = to_string(mul);
+    if(num1[0] == '-' && num2[0] == '-'){
+        num1.erase(0, 1);
+        num2.erase(0, 1);
+    } else if(num1[0] == '-'){
+        num1.erase(0, 1);
+        res.push_back('-');
+    } else if(num2[0] == '-'){
+        num2.erase(0, 1);
+        res.push_back('-');
+    }
+    res += mul_String(num1, num2);
 
     return getNumVariable(res);
 }
