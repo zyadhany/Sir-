@@ -32,5 +32,9 @@ void runConsole() {
 }
 
 int main(int argc, char *argv[]) {
-    runConsole();
+    // runConsole();
+
+    return 0;
 }
+
+// Cc$01011

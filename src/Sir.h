@@ -1,8 +1,9 @@
 #ifndef SIR_H
 
 #include <bits/stdc++.h>
-using namespace std;
+#include "variables/variable.h"
 
+using namespace std;
 
 
 struct BlockCode {
@@ -30,9 +31,6 @@ void interpret(const string &line);
 
 /** executing **/
 void executeToken(vector<string> &tokens);
-
-/** Variables **/
-double GetVariable(string name);
 
 /** opprations  **/
 double MakeOperation(string expresion); 
