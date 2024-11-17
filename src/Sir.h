@@ -8,24 +8,22 @@
 using namespace std;
 
 
-struct BlockCode {
-    vector<string> code;
-};
+class Scope {
+public:
+    pair<int, int> line_block;
+    vector<Variable> scope_variables;
 
-struct IF_COND{
-    string condtion;
-    BlockCode block;
-};
+    Scope() {
+        line_block = {0, 0};
+    }
 
-struct WHILE_LOOP{
-    string condtion;
-    BlockCode block;
-};
+    void runScope();
+    void addVariable(const Variable &var);
+    void closeScope();
 
-struct FUNCTION{
-    string name;
-    vector<string> args;
-    BlockCode block;
+    ~Scope() {
+        closeScope();
+    }
 };
 
 /** Interpting **/
