@@ -8,9 +8,9 @@ using namespace std;
 class Variable;
 
 extern vector<Variable> variables;
-Variable ConvertToVariable(const string &expresion);
 Variable GetVariable(string name);
 Variable SetVariable(Variable var);
+Variable MakeOperation(const Variable &v1, const Variable &v2, const string &op);
 
 
 /** Num Variables **/
@@ -60,20 +60,18 @@ struct operator_k
     }
 };
 extern map<operator_k, Variable (*)(const Variable&, const Variable&)> operations;
-Variable MakeOperation(const Variable &v1, const Variable &v2, const string &op);
 
 
 class Variable{
-private:
+public:
     string name;
     string type;
     string value;
-    //vector<Variable> params;
-    //vector<map<string, string>> methods;
-public:
 
+    Variable() : name(""), type("null"), value("") {}
     Variable(const string& name, const string& type, const string& value="")
         : name(name), type(type), value(value) {}
+    Variable(const string& expression);
     virtual ~Variable() = default;
 
     void setValue(const string &newValue) {
@@ -87,6 +85,10 @@ public:
     bool validateValue(const string& newValue) {
         // todo: implement validation for each type
         return true;
+    }
+
+    void save() {
+        SetVariable(*this);
     }
 
     string getValue() const {

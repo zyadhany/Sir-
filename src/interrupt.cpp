@@ -2,10 +2,11 @@
 
 
 void interpret(const string &line) {
-    vector<string> tokens = parseCommandLine(line);
+    // vector<string> tokens = parseCommandLine(line);
+    // if (tokens.size() == 0) return;
+    // executeToken(tokens);    
     
-    if (tokens.size() == 0) return;
-
-    executeToken(tokens);    
+    Command command(line);
+    Variable result = command.runCommand();
 }
 

@@ -1,6 +1,7 @@
 #include "variable.h"
 
 vector<Variable> variables;
+
 map<operator_k, Variable (*)(const Variable&, const Variable&)> operations = {
     {operator_k("+", "num", "num"), add_Number},
     {operator_k("-", "num", "num"), sub_Number},
@@ -30,31 +31,8 @@ map<operator_k, Variable (*)(const Variable&, const Variable&)> operations = {
     {operator_k("||", "num", "str"), Logical_or},
     {operator_k("&&", "str", "num"), Logical_and},
     {operator_k("||", "str", "num"), Logical_or},
-
-
 };
 
-Variable ConvertToVariable(const string &expresion){
-    int cntdot = 0;
-    int cntdigit = 0;
-    
-    for (auto c : expresion) {
-        if (c == '.') {
-            cntdot++;
-        } else if (isdigit(c)) {
-            cntdigit++;
-        }
-    }
-
-
-    if (expresion.size() > 0 && expresion[0] == '-') cntdigit++;
-
-    if (cntdigit + cntdot == expresion.size()) {
-        return Variable("temp", "num", expresion);
-    }
-
-    return Variable("temp", "str", expresion);
-}
 
 Variable GetVariable(string name){
     int index = -1;
@@ -96,4 +74,16 @@ Variable MakeOperation(const Variable &v1, const Variable &v2, const string &op)
     throw runtime_error("Operation " + op + " not supported for " + v1.getType() + " and " + v2.getType());
 }
 
-
+/**
+ * input / output Variable
+ * "Zyad" : str
+ * 5 : num
+ * 5.5 : num
+ * 5 + 5: 10 num
+ * "Zyad" + "Hany" : "ZyadHany"
+ * "Zyad" + 5 : "Zyad5"
+ * n=5 : new variable n with value 5
+ */
+Variable::Variable(const string &expresion){
+    *this = Variable("temp", "str", expresion);
+}

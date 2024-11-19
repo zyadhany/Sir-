@@ -7,24 +7,16 @@
 
 using namespace std;
 
+struct SirGlobal
+{
+    int line;
 
-class Scope {
-public:
-    pair<int, int> line_block;
-    vector<Variable> scope_variables;
-
-    Scope() {
-        line_block = {0, 0};
-    }
-
-    void runScope();
-    void addVariable(const Variable &var);
-    void closeScope();
-
-    ~Scope() {
-        closeScope();
+    SirGlobal()
+    {
+        line = 0;
     }
 };
+extern SirGlobal sirGlobal;
 
 /** Interpting **/
 void interpret(const string &line);
