@@ -60,7 +60,7 @@ Variable Command::runBuiltIn() {
 }
 
 Variable Command::runExpression() {
-    return ConvertToVariable(expression);
+    return Variable(expression);
     throw runtime_error("Not implemented");
 }
 
