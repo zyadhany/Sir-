@@ -74,17 +74,3 @@ Variable MakeOperation(const Variable &v1, const Variable &v2, const string &op)
     throw runtime_error("Operation " + op + " not supported for " + v1.getType() + " and " + v2.getType());
 }
 
-/**
-
- * Variable()
-
-    Variable("(n + 20) * m");
-    Variabele("n") + 
-
-
-
-    Variable("n") + Va
- */
-Variable::Variable(const string &expresion){
-    *this = Variable("temp", "str", expresion);
-}
