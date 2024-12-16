@@ -41,7 +41,7 @@ bool check_double_quotes(string str) {
  * @param str
  * @return string
  */
-string trim_spaces(string &str) {
+string trim_spaces(const string &str) {
     string temp = "";
     bool check = false;
     for (int i = 0; i < str.size(); i++) {
@@ -90,36 +90,75 @@ bool is_valid_variable_name(string str) {
     return true;
 }
 
+bool check_oppration(string &str) {
+    for (auto opp : operations)
+        if (str.find(opp) != string::npos) return true;
+    return false;
+}
 
+bool valid_expression(string &str) {
+    bool check = true;
+    check &= IsValidBarnaces(str);
+    check &= check_double_quotes(str);
+    // check not start or end with oppration
+    return check;
+}
 
-/**
-
- * Variable()
-
-    Variable("(n + 20) * m");
-    Variabele("n") + 
-
-
-
-    Variable("n") + Va
- */
 Variable::Variable(const string &expresion){
     string exp = trim_spaces(expresion);
-    bool check = false;
-    for (auto opp : operations) {
-        if (exp.find(opp) != string::npos) {
-            check = true;
-            break;
-        }
+    if (!valid_expression(exp)) {
+        throw runtime_error("Invalid string");
     }
-    if (!check)
+
+    if (!check_oppration(exp))
     {
-        *this = Variable("temp", "str", exp);
+        if (exp.empty()) *this = Variable("temp", "str", "");
+        else if (exp[0] == '\"' && exp[exp.size() - 1] == '\"') *this = Variable("temp", "str", exp.substr(1, exp.size() - 2));
+        else if (is_valid_number(exp)) *this = Variable("temp", "num", exp);
+        else if (is_valid_variable_name(exp)) *this = GetVariable(exp);
+        else throw runtime_error("Invalid string");
         return;
+    }
+
+    vector<Variable> vars;
+    vector<string> ops;
+
+    int at = 0;
+    for (int i = 0; i < exp.size() - 1; i++)
+    {
+        if (exp[i] == '(')
+        {
+            int barnaces = 1;
+            i++;
+            while (barnaces)
+            {
+                if (exp[i] == '(')
+                    barnaces++;
+                else if (exp[i] == ')')
+                    barnaces--;
+                i++;
+            }
+            string temp = exp.substr(at + 1, i - at - 2);
+            vars.push_back(Variable(temp));
+            at = i;
+            i--;
+            continue;
+        }
+        if (exp[i] == '\"')
+        {
+            i++;
+            while (exp[i] != '\"' && exp[i - 1] != '\\')
+                i++;
+            string temp = exp.substr(at, i - at);
+            vars.push_back(Variable(temp));
+            at = i;
+            i--;
+            continue;
+        }
+
 
     }
-    if (!IsValidBarnaces(exp))
-        throw runtime_error("Invalid barnaces");
+    
     
     
     // *this = Variable("temp", "str", exp);
