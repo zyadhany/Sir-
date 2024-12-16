@@ -34,8 +34,6 @@ public:
  * @types:
  * - expression: expression -> run expression (function, variable, opperation)
  * 
- * - variable: name = expression -> variable assignment
- * 
  * - built-in: name expression -> run expression depending on name
  *   - name: print, return, break, continue, exit, game.
  * 
@@ -46,7 +44,7 @@ class Command {
 public:
     string type;
     string name;
-    // Scope scope;
+    // Scope s cope;
     string expression;
 
     Command() {

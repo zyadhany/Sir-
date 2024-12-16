@@ -30,7 +30,7 @@ map<operator_k, Variable (*)(const Variable&, const Variable&)> operations = {
     {operator_k("&&", "num", "str"), Logical_and},
     {operator_k("||", "num", "str"), Logical_or},
     {operator_k("&&", "str", "num"), Logical_and},
-    {operator_k("||", "str", "num"), Logical_or},
+    {operator_k("||", "str", "num"), Logical_or}
 };
 
 
@@ -75,14 +75,15 @@ Variable MakeOperation(const Variable &v1, const Variable &v2, const string &op)
 }
 
 /**
- * input / output Variable
- * "Zyad" : str
- * 5 : num
- * 5.5 : num
- * 5 + 5: 10 num
- * "Zyad" + "Hany" : "ZyadHany"
- * "Zyad" + 5 : "Zyad5"
- * n=5 : new variable n with value 5
+
+ * Variable()
+
+    Variable("(n + 20) * m");
+    Variabele("n") + 
+
+
+
+    Variable("n") + Va
  */
 Variable::Variable(const string &expresion){
     *this = Variable("temp", "str", expresion);
