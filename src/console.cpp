@@ -35,6 +35,17 @@ void runConsole() {
 }
 
 int main(int argc, char *argv[]) {
-    runConsole();    
+
+    Variable v1("tmp", "num", "10000000000000000000000");
+    Variable v2("tmp", "num", "-0");
+    Variable v3 = v1 * v2;
+    cout<<v3.getValue()<<endl;
+
+    Variable v11("tmp", "num", "10");
+    Variable v22("tmp", "num", "-10");
+    Variable v33 = v11 * v22;
+    cout<<v33.getValue()<<endl;
+
+//    runConsole();
     return 0;
 }
