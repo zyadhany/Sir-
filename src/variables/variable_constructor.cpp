@@ -56,6 +56,43 @@ string trim_spaces(string &str) {
 }
 
 /**
+ * check if the string is a valid number
+ * @param str
+ * @return bool
+ */
+bool is_valid_number(string str) {
+    if(str.size() == 0) return false;
+    if(str[0] == '0' && str.size() > 1) return false;
+    for (int i = 0; i < str.size(); i++) {
+        if(i == 0 && str[i] == '-') continue;
+        if(str[i] < '0' || str[i] > '9') return false;
+    }
+    return true;
+}
+
+/**
+ * check if the string is a valid variable
+ * @param str
+ * @return bool
+ */
+bool is_valid_variable_name(string str) {
+    if(str.size() == 0) return false;
+    if(str[0] >= '0' && str[0] <= '9') return false;
+    for (int i = 0; i < str.size(); i++) {
+        if(str[i] < '0' || str[i] > '9') {
+            if(str[i] < 'a' || str[i] > 'z') {
+                if(str[i] < 'A' || str[i] > 'Z') {
+                    if(str[i] != '_') return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
+
+
+/**
 
  * Variable()
 
