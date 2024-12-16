@@ -41,23 +41,17 @@ bool check_double_quotes(string str) {
  * @param str
  * @return string
  */
-string trim_spaces(string str) {
+string trim_spaces(string &str) {
     string temp = "";
     bool check = false;
     for (int i = 0; i < str.size(); i++) {
-        if(str[i] == '\\' && str[i + 1] == '\"' && check)
-        {
-            i++;
-            continue;
-        }
-        if(str[i] == '\"')
-            check = !check;
-        if(check)
-            continue;
-        if (str[i] != ' ') {
-            temp += str[i];
-        }
+        if (!check && str[i] == ' ') continue;
+        temp += str[i];
+
+        if(i && str[i] == '\"' && str[i - 1] == '\\' && check) continue;
+        if(str[i] == '\"') check = !check;
     }
+
     return temp;
 }
 
@@ -73,26 +67,25 @@ string trim_spaces(string str) {
     Variable("n") + Va
  */
 Variable::Variable(const string &expresion){
-    expresion = trim_spaces(expresion);
+    string exp = trim_spaces(expresion);
     bool check = false;
     for (auto opp : operations) {
-        if (expresion.find(opp) != string::npos) {
+        if (exp.find(opp) != string::npos) {
             check = true;
             break;
         }
     }
     if (!check)
     {
-        if ()
-        *this = Variable("temp", "str", expresion);
+        *this = Variable("temp", "str", exp);
         return;
 
     }
-    if (!IsValidBarnaces(expresion))
+    if (!IsValidBarnaces(exp))
         throw runtime_error("Invalid barnaces");
     
     
-    // *this = Variable("temp", "str", expresion);
+    // *this = Variable("temp", "str", exp);
 }
 
 

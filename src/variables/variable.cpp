@@ -1,6 +1,6 @@
 #include "variable.h"
 
-vector<Variable> variables;
+map<string, Variable> variables;
 
 map<operator_k, Variable (*)(const Variable&, const Variable&)> operations = {
     {operator_k("+", "num", "num"), add_Number},
@@ -36,33 +36,15 @@ map<operator_k, Variable (*)(const Variable&, const Variable&)> operations = {
 
 Variable GetVariable(string name){
     int index = -1;
-    for (int i = 0; i < variables.size(); i++) {
-        if (variables[i].getName() == name) {
-            index = i;
-            break;
-        }
-    }
-    
-    if (index == -1) {
-        throw runtime_error("Variable " + name + " not found");
+    if (variables.find(name) != variables.end()) {
+        return variables[name];
     }
 
-    return variables[index];
+    throw runtime_error("Variable " + name + " not found");
 }
 
 Variable SetVariable(Variable var){
-    int index = -1;
-    for (int i = 0; i < variables.size(); i++) {
-        if (variables[i].getName() == var.getName()) {
-            index = i;
-            break;
-        }
-    }
-
-    if (index != -1) {
-        throw runtime_error("Variable " + var.getName() + " already exists");
-    }
-    variables.push_back(var);
+    variables[var.getName()] = var;
     return var;
 }
 
