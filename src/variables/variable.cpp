@@ -85,5 +85,6 @@ Variable MakeOperation(const Variable &v1, const Variable &v2, const string &op)
  * n=5 : new variable n with value 5
  */
 Variable::Variable(const string &expresion){
+    
     *this = Variable("temp", "str", expresion);
 }
