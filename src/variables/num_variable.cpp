@@ -302,7 +302,6 @@ Variable div_Number(const Variable &v1, const Variable &v2) {
             int count = 0;
             Variable te("te", "num", temp);
 
-            // Fix: While loop condition reversed
             while (greater_Number(te, v2).getValue() == "1" || te.getValue() == v2.getValue()) {
                 temp = sub_String(temp, num2);
                 te = Variable("te", "num", temp);
