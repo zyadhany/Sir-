@@ -11,7 +11,7 @@ vector<string> readfile(const string &filename)
     string line;
     while (getline(file, line))
     {
-        line = parseLine(line);
+        line = parseline(line);
         if (line.empty())
             continue;
         lines.push_back(line);

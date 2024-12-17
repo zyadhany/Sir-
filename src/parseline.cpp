@@ -1,7 +1,7 @@
 #include "Sir.h"
 
 
-bool check_double_quotes(string str) {
+bool check_quotes(string str) {
     bool check = false;
     for (int i = 0; i < str.size(); i++) {
         if(str[i] == '\\' && str[i + 1] == '\"' && check) i++;
@@ -10,9 +10,9 @@ bool check_double_quotes(string str) {
     return !check;
 }
 
-string parseLine(string line)
+string parseline(string line)
 {
-    if (!check_double_quotes(line))
+    if (!check_quotes(line))
         throw runtime_error("Invalid string");
 
     string parsedLine = "";
