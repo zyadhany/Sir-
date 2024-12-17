@@ -7,7 +7,7 @@ using namespace std;
 
 class Variable;
 
-extern vector<Variable> variables;
+extern map<string, Variable> variables;
 Variable GetVariable(string name);
 Variable SetVariable(Variable var);
 Variable MakeOperation(const Variable &v1, const Variable &v2, const string &op);

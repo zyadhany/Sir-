@@ -6,19 +6,11 @@ Command::Command(const string &line) {
     expression = "";
 
     if (line.size() == 0) return;
-
     if (line[0] == '#') return;
 
     size_t pos = 0;
     size_t end = 0;
 
-    if (line.find("=") != string::npos) {
-        pos = line.find("=");
-        name = line.substr(0, pos);
-        expression = line.substr(pos + 1);
-        type = "variable";
-        return;
-    }
 
     if (line.find(" ") != string::npos) {
         pos = line.find(" ");
@@ -42,7 +34,6 @@ Command::Command(const string &line) {
 
 Variable Command::runCommand() {
     if (type == "expression") return runExpression();
-    if (type == "variable") return runVariable();
     if (type == "built-in") return runBuiltIn();
     if (type == "block") return runBlock();
 
@@ -60,11 +51,7 @@ Variable Command::runBuiltIn() {
 }
 
 Variable Command::runExpression() {
-    return ConvertToVariable(expression);
-    throw runtime_error("Not implemented");
-}
-
-Variable Command::runVariable() {
+    return Variable(expression);
     throw runtime_error("Not implemented");
 }
 

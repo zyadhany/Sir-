@@ -1,6 +1,6 @@
 #include "variable.h"
 
-vector<Variable> variables;
+map<string, Variable> variables;
 
 map<operator_k, Variable (*)(const Variable&, const Variable&)> operations = {
     {operator_k("+", "num", "num"), add_Number},
@@ -30,39 +30,21 @@ map<operator_k, Variable (*)(const Variable&, const Variable&)> operations = {
     {operator_k("&&", "num", "str"), Logical_and},
     {operator_k("||", "num", "str"), Logical_or},
     {operator_k("&&", "str", "num"), Logical_and},
-    {operator_k("||", "str", "num"), Logical_or},
+    {operator_k("||", "str", "num"), Logical_or}
 };
 
 
 Variable GetVariable(string name){
     int index = -1;
-    for (int i = 0; i < variables.size(); i++) {
-        if (variables[i].getName() == name) {
-            index = i;
-            break;
-        }
-    }
-    
-    if (index == -1) {
-        throw runtime_error("Variable " + name + " not found");
+    if (variables.find(name) != variables.end()) {
+        return variables[name];
     }
 
-    return variables[index];
+    throw runtime_error("Variable " + name + " not found");
 }
 
 Variable SetVariable(Variable var){
-    int index = -1;
-    for (int i = 0; i < variables.size(); i++) {
-        if (variables[i].getName() == var.getName()) {
-            index = i;
-            break;
-        }
-    }
-
-    if (index != -1) {
-        throw runtime_error("Variable " + var.getName() + " already exists");
-    }
-    variables.push_back(var);
+    variables[var.getName()] = var;
     return var;
 }
 
@@ -85,6 +67,5 @@ Variable MakeOperation(const Variable &v1, const Variable &v2, const string &op)
  * n=5 : new variable n with value 5
  */
 Variable::Variable(const string &expresion){
-    
     *this = Variable("temp", "str", expresion);
 }

@@ -35,67 +35,17 @@ void runConsole() {
 }
 
 int main(int argc, char *argv[]) {
-    runConsole();
 
-    // while (true)
-    // {
-    //     string s1, s2;
-    //     string opp;
-    //     cin >> s1 >> s2 >> opp;
+    Variable v1("tmp", "num", "10000000000000000000000");
+    Variable v2("tmp", "num", "-0");
+    Variable v3 = v1 * v2;
+    cout<<v3.getValue()<<endl;
 
-    //     Variable v1 = ConvertToVariable(s1);
-    //     Variable v2 = ConvertToVariable(s2);
-    //     Variable res = v1;
+    Variable v11("tmp", "num", "10");
+    Variable v22("tmp", "num", "-10");
+    Variable v33 = v11 * v22;
+    cout<<v33.getValue()<<endl;
 
-    //     if (opp == "+") {
-    //         res = v1 + v2;
-    //     } else if (opp == "-") {
-    //         res = v1 - v2;
-    //     } else if (opp == "*") {
-    //         res = v1 * v2;
-    //     } else if (opp == "/") {
-    //         res = v1 / v2;
-    //     } else if (opp == "%") {
-    //         res = v1 % v2;
-    //     } else if (opp == "&") {
-    //         res = v1 & v2;
-    //     } else if (opp == "|") {
-    //         res = v1 | v2;
-    //     } else if (opp == "^") {
-    //         res = v1 ^ v2;
-    //     } else if (opp == "<<") {
-    //         res = v1 << v2;
-    //     } else if (opp == ">>") {
-    //         res = v1 >> v2;
-    //     } 
-    //     else if (opp == "<") {
-    //         res = v1 < v2;
-    //     } else if (opp == ">") {
-    //         res = v1 > v2;
-    //     } else if (opp == "<=") {
-    //         res = v1 <= v2;
-    //     } else if (opp == ">=") {
-    //         res = v1 >= v2;
-    //     } else if (opp == "==") {
-    //         res = v1 == v2;
-    //     } else if (opp == "!=") {
-    //         res = v1 != v2;
-    //     } else if (opp == "&&") {
-    //         res = v1 && v2;
-    //     } else if (opp == "||") {
-    //         res = v1 || v2;
-    //     } else if (opp == "!") {
-    //         res = !v1;
-    //     } else if (opp == "~") {
-    //         res = ~v1;
-    //     }
-    //     else {
-    //         cout << "Invalid operation\n";
-    //         continue;
-    //     }
-
-    //     cout << res << '\n';
-    // }
-    
+//    runConsole();
     return 0;
 }
