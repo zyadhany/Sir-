@@ -302,7 +302,7 @@ Variable div_Number(const Variable &v1, const Variable &v2) {
             int count = 0;
             Variable te("te", "num", temp);
 
-            while (greater_Number(te, v2).getValue() == "1" || te.getValue() == v2.getValue()) {
+            while (greater_equal_Number(te, v2).getValue() == "1") {
                 temp = sub_String(temp, num2);
                 te = Variable("te", "num", temp);
                 count++;
