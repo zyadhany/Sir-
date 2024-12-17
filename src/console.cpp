@@ -35,7 +35,9 @@ void runConsole() {
 }
 
 int main(int argc, char *argv[]) {
-    
-    runConsole();
+    if(argc > 1) 
+        readfile(argv[1]);
+    else
+        runConsole();
     return 0;
 }

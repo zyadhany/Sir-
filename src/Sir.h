@@ -30,6 +30,6 @@ void executeToken(vector<string> &tokens);
 
 /** Parsing **/
 vector<string> parseCommandLine(const string &line);
-vector<string> readcommands(string[] lines);
+vector<string> readfile(const string &filename);
 
 #endif // SIR_H
