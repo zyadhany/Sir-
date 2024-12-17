@@ -6,17 +6,26 @@ map<string, Variable (*)(const Command &)> internal_functions = {
 };
 
 Variable builtin_print(const Command &command) {
-    cout << command.expression << endl;
+    Variable var(command.expression);
+    cout << var.getValue() << endl;
     return Variable();
 }
 
 Variable builtin_var(const Command &command) {
-    string name = "";
-    for (int i = 0; i < command.expression.size(); i++) {
-        if (command.expression[i] == ' ') break;
-        name += command.expression[i];
+    string name;
+    string exp;
+
+    if (command.expression.find("=", 0) != string::npos) {
+        name = command.expression.substr(0, command.expression.find("=", 0));
+        name = name.substr(0, name.find_last_not_of(" \t\n\r\f\v") + 1);
+        exp = command.expression.substr(command.expression.find("=", 0) + 1);
+    } else {
+        throw runtime_error("Invalid variable declaration");
     }
-    string expression = command.expression.substr(name.size() + 1);
-    Variable var = SetVariable(Variable(name, expression));
+
+    Variable var(exp);
+    var.name = name;
+    SetVariable(var);
+
     return var;
 }
