@@ -31,5 +31,6 @@ void executeToken(vector<string> &tokens);
 /** Parsing **/
 vector<string> parseCommandLine(const string &line);
 vector<string> readfile(const string &filename);
+string parseLine(string line);
 
 #endif // SIR_H
