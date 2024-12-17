@@ -35,8 +35,7 @@ void runConsole() {
 }
 
 int main(int argc, char *argv[]) {
-
+    
     runConsole();
     return 0;
-    
 }
