@@ -224,6 +224,8 @@ Variable mul_Number(const Variable &v1, const Variable &v2) {
     else
         res = mul_String(num1, num2);
 
+    if (res == "-0")
+        res = "0";
     return getNumVariable(res);
 }
 
@@ -268,7 +270,8 @@ Variable sub_Number(const Variable &v1, const Variable &v2) {
     return getNumVariable(res);
 }
 
-// here
+
+
 Variable div_Number(const Variable &v1, const Variable &v2) {
     if (v1.getType() != "num") throw runtime_error("v1 is not a number");
     if (v2.getType() != "num") throw runtime_error("v2 is not a number");
@@ -276,14 +279,46 @@ Variable div_Number(const Variable &v1, const Variable &v2) {
     string res;
     string num1 = v1.getValue();
     string num2 = v2.getValue();
-    long long n1 = stoll(num1);
-    long long n2 = stoll(num2);
-    if (n2 == 0) throw runtime_error("Division by zero");
-    long long div = n1 / n2;
-    res = to_string(div);
+
+    if (num2 == "0") throw runtime_error("Division by zero");
+
+    if (greater_Number(v2, v1).getValue() == "1") { // v2 > v1
+        res = "0";
+    }
+    else if (num1 == num2) { // v1 == v2
+        res = "1";
+    }
+    else {
+        string quotient = "";
+        string temp = "";
+
+        int n = num1.size();
+        for (int i = 0; i < n; ++i) {
+            temp += num1[i];
+
+            temp = removeLeadingZeros(temp);
+            if (temp.empty()) temp = "0";
+
+            int count = 0;
+            Variable te("te", "num", temp);
+
+            // Fix: While loop condition reversed
+            while (greater_Number(te, v2).getValue() == "1" || te.getValue() == v2.getValue()) {
+                temp = sub_String(temp, num2);
+                te = Variable("te", "num", temp);
+                count++;
+            }
+
+            quotient += (count + '0');
+        }
+
+        res = removeLeadingZeros(quotient);
+        if (res.empty()) res = "0";
+    }
 
     return getNumVariable(res);
 }
+
 
 Variable mod_Number(const Variable &v1, const Variable &v2) {
     if (v1.getType() != "num") throw runtime_error("v1 is not a number");
