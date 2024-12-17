@@ -474,7 +474,6 @@ Variable bitwise_and_Number(const Variable &v1, const Variable &v2) {
         else
             res[i] = '0';
     }
-    cout<<res<<endl;
     res = BineryToNumString(res);
     return getNumVariable(res);
 }
