@@ -2,7 +2,20 @@
 
 map<string, Variable> variables;
 
-map<operator_k, Variable (*)(const Variable&, const Variable&)> operations = {
+map<string, int> OPPRATORS = {
+    {"*", 2}, {"/", 2}, {"%", 2},
+    {"+", 3}, {"-", 3},
+    {"<<", 4}, {">>", 4},
+    {"<", 5}, {">", 5}, {"<=", 5}, {">=", 5},
+    {"==", 6}, {"!=", 6},
+    {"&", 7},
+    {"^", 8},
+    {"|", 9},
+    {"&&", 10},
+    {"||", 11}
+};
+
+map<operator_k, Variable (*)(const Variable&, const Variable&)> TYPEOPRATOR = {
     {operator_k("+", "num", "num"), add_Number},
     {operator_k("-", "num", "num"), sub_Number},
     {operator_k("*", "num", "num"), mul_Number},
@@ -33,7 +46,6 @@ map<operator_k, Variable (*)(const Variable&, const Variable&)> operations = {
     {operator_k("||", "str", "num"), Logical_or}
 };
 
-
 Variable GetVariable(string name){
     int index = -1;
     if (variables.find(name) != variables.end()) {
@@ -50,22 +62,8 @@ Variable SetVariable(Variable var){
 
 Variable MakeOperation(const Variable &v1, const Variable &v2, const string &op) {
     operator_k key(op, v1.getType(), v2.getType());
-    if (operations.find(key) != operations.end()) {
-        return operations[key](v1, v2);
+    if (TYPEOPRATOR.find(key) != TYPEOPRATOR.end()) {
+        return TYPEOPRATOR[key](v1, v2);
     }
     throw runtime_error("Operation " + op + " not supported for " + v1.getType() + " and " + v2.getType());
-}
-
-/**
- * input / output Variable
- * "Zyad" : str
- * 5 : num
- * 5.5 : num
- * 5 + 5: 10 num
- * "Zyad" + "Hany" : "ZyadHany"
- * "Zyad" + 5 : "Zyad5"
- * n=5 : new variable n with value 5
- */
-Variable::Variable(const string &expresion){
-    *this = Variable("temp", "str", expresion);
 }

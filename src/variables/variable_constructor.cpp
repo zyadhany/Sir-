@@ -5,7 +5,6 @@
  * @param expresion
  * @return
  */
-vector<string> operations = {"+", "-", "*", "/", "%", "&", "|", "^", "<<", ">>", "<", ">", "<=", ">=", "==", "!=", "&&", "||", "!", "~"};
 bool IsValidBarnaces(string expresion)
 {
     int barnaces = 0;
@@ -91,8 +90,8 @@ bool is_valid_variable_name(string str) {
 }
 
 bool check_oppration(string &str) {
-    for (auto opp : operations)
-        if (str.find(opp) != string::npos) return true;
+    for (auto opp : OPPRATORS)
+        if (str.find(opp.first) != string::npos) return true;
     return false;
 }
 
@@ -156,12 +155,26 @@ Variable::Variable(const string &expresion){
             continue;
         }
 
+        string nxopp = exp.substr(i, 2);
+        if (check_oppration(nxopp))
+        {    
+            vars.push_back(Variable(exp.substr(at, i - at)));
+            ops.push_back(nxopp);
+            at = i + 2;
+            i++;
+            continue;
+        }
 
+        string opp = exp.substr(i, 1);
+        if (check_oppration(opp))
+        {
+            vars.push_back(Variable(exp.substr(at, i - at)));
+            ops.push_back(opp);
+            at = i + 1;
+        } 
     }
+
+    if (at < exp.size()) vars.push_back(Variable(exp.substr(at, exp.size() - at)));
     
-    
-    
-    // *this = Variable("temp", "str", exp);
+    *this = execute(ops, vars);
 }
-
-

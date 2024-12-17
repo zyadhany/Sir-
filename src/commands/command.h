@@ -9,6 +9,7 @@ extern map<string, Variable (*)(const Command &)> internal_functions;
 
 /** built-in function **/
 Variable builtin_print(const Command &command);
+Variable builtin_var(const Command &command);
 
 class Scope {
 public:

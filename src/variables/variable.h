@@ -8,10 +8,12 @@ using namespace std;
 class Variable;
 
 extern map<string, Variable> variables;
+extern map<string, int> OPPRATORS;
+
 Variable GetVariable(string name);
 Variable SetVariable(Variable var);
 Variable MakeOperation(const Variable &v1, const Variable &v2, const string &op);
-
+Variable execute(vector<string> operations, vector<Variable> vars);
 
 /** Num Variables **/
 Variable add_Number(const Variable &v1, const Variable &v2);
@@ -59,7 +61,7 @@ struct operator_k
         return type2 < other.type2;
     }
 };
-extern map<operator_k, Variable (*)(const Variable&, const Variable&)> operations;
+extern map<operator_k, Variable (*)(const Variable&, const Variable&)> TYPEOPRATOR;
 
 
 class Variable{
