@@ -108,8 +108,9 @@ Variable::Variable(const string &expresion){
     if (!valid_expression(exp)) {
         throw runtime_error("Invalid string");
     }
-
-    if (!check_oppration(exp))
+    
+    string expresiontocheck = exp.substr(exp[0] == '-');
+    if (!check_oppration(expresiontocheck))
     {
         if (exp.empty()) *this = Variable("temp", "str", "");
         else if (exp[0] == '\"' && exp[exp.size() - 1] == '\"') *this = Variable("temp", "str", exp.substr(1, exp.size() - 2));
@@ -154,9 +155,10 @@ Variable::Variable(const string &expresion){
             i--;
             continue;
         }
+        if (i == at && exp[i] == '-') continue;
 
         string nxopp = exp.substr(i, 2);
-        if (check_oppration(nxopp))
+        if (OPPRATORS.find(nxopp) != OPPRATORS.end())
         {    
             vars.push_back(Variable(exp.substr(at, i - at)));
             ops.push_back(nxopp);
@@ -165,11 +167,11 @@ Variable::Variable(const string &expresion){
             continue;
         }
 
-        string opp = exp.substr(i, 1);
-        if (check_oppration(opp))
+        nxopp = exp.substr(i, 1);
+        if (OPPRATORS.find(nxopp) != OPPRATORS.end())
         {
             vars.push_back(Variable(exp.substr(at, i - at)));
-            ops.push_back(opp);
+            ops.push_back(nxopp);
             at = i + 1;
         } 
     }
