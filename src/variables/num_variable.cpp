@@ -485,11 +485,28 @@ Variable bitwise_or_Number(const Variable &v1, const Variable &v2) {
     string res;
     string num1 = v1.getValue();
     string num2 = v2.getValue();
-    long long n1 = stoll(num1);
-    long long n2 = stoll(num2);
-    long long or_res = n1 | n2;
-    res = to_string(or_res);
 
+    string num1bin = NumStringToBinery(num1);
+    string num2bin = NumStringToBinery(num2);
+    reverse(num1bin.begin(), num1bin.end());
+    reverse(num2bin.begin(), num2bin.end());
+    while (num1bin.size() < num2bin.size())
+        num1bin += '0';
+
+    while (num2bin.size() < num1bin.size())
+        num2bin += '0';
+
+    reverse(num1bin.begin(), num1bin.end());
+    reverse(num2bin.begin(), num2bin.end());
+
+    for (int i = 0; i < num1bin.size(); ++i) {
+        res += '0';
+        if (num1bin[i] == '1' || num2bin[i] == '1')
+            res[i] = '1';
+        else
+            res[i] = '0';
+    }
+    res = BineryToNumString(res);
     return getNumVariable(res);
 }
 
@@ -500,11 +517,28 @@ Variable bitwise_xor_Number(const Variable &v1, const Variable &v2) {
     string res;
     string num1 = v1.getValue();
     string num2 = v2.getValue();
-    long long n1 = stoll(num1);
-    long long n2 = stoll(num2);
-    long long xor_res = n1 ^ n2;
-    res = to_string(xor_res);
 
+    string num1bin = NumStringToBinery(num1);
+    string num2bin = NumStringToBinery(num2);
+    reverse(num1bin.begin(), num1bin.end());
+    reverse(num2bin.begin(), num2bin.end());
+    while (num1bin.size() < num2bin.size())
+        num1bin += '0';
+
+    while (num2bin.size() < num1bin.size())
+        num2bin += '0';
+
+    reverse(num1bin.begin(), num1bin.end());
+    reverse(num2bin.begin(), num2bin.end());
+
+    for (int i = 0; i < num1bin.size(); ++i) {
+        res += '0';
+        if ((num1bin[i] == '1' && num2bin[i] == '0') || (num1bin[i] == '0' && num2bin[i] == '1'))
+            res[i] = '1';
+        else
+            res[i] = '0';
+    }
+    res = BineryToNumString(res);
     return getNumVariable(res);
 }
 
