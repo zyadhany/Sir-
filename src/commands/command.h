@@ -17,16 +17,10 @@ public:
     vector<Variable> scope_variables;
 
     Scope() {
-        line_block = {INT32_MAX, 0};
+        line_block = {-1, -1};
     }
 
     void runScope();
-    void addVariable(const Variable &var);
-    void closeScope();
-
-    ~Scope() {
-        closeScope();
-    }
 };
 
 /**
@@ -45,7 +39,7 @@ class Command {
 public:
     string type;
     string name;
-    // Scope s cope;
+    Scope scope;
     string expression;
 
     Command() {
