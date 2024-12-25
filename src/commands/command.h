@@ -12,7 +12,6 @@ extern map<string, Variable (*)(Command &)> BLOCK_FUNCTIONS;
 
 /** built-in function **/
 Variable builtin_print(const Command &command);
-Variable builtin_var(const Command &command);
 
 /** block function **/
 Variable block_scope(Command &command);
