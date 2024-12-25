@@ -35,12 +35,9 @@ void runConsole() {
 }
 
 int main(int argc, char *argv[]) {
-
-    /*Variable v1("v1", "num", "15");
-    Variable v2("v2", "num", "2");
-    Variable v3 = v1 / v2;
-    cout<<v3.getValue()<<endl;*/
-
-    runConsole();
+    if(argc > 1) 
+        readfile(argv[1]);
+    else
+        runConsole();
     return 0;
 }
