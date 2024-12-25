@@ -4,6 +4,7 @@ Command::Command(const string &line) {
     type = "null";
     name = "";
     expression = "";
+    vector<string> BlockNames = {"if", "while", "function"};
 
     if (line.size() == 0) return;
     if (line[0] == '#') return;

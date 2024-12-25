@@ -33,7 +33,7 @@ public:
         line_block = {-1, -1};
     }
 
-    void runScope();
+    Variable runScope();
 };
 
 /**

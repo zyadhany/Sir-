@@ -56,5 +56,13 @@ string parseline(string line)
             }
         }
     }
+
+    while (!parsedLine.empty() && parsedLine.back() == ' ')
+        parsedLine.pop_back();
+    reverse(parsedLine.begin(), parsedLine.end());
+    while (!parsedLine.empty() && parsedLine.back() == ' ')
+        parsedLine.pop_back();
+    reverse(parsedLine.begin(), parsedLine.end());
+
     return parsedLine;
 }
