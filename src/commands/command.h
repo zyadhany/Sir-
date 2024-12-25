@@ -6,15 +6,29 @@
 
 class Command;
 extern map<string, Variable (*)(const Command &)> internal_functions;
+extern vector<string> COMMAND_LINES;
+extern map<string, Variable (*)(Command &)> BLOCK_FUNCTIONS;
+
 
 /** built-in function **/
 Variable builtin_print(const Command &command);
 Variable builtin_var(const Command &command);
 
+/** block function **/
+Variable block_scope(Command &command);
+Variable block_if(Command &command);
+Variable block_while(Command &command);
+Variable block_function(Command &command);
+
+
 class Scope {
 public:
     pair<int, int> line_block;
     vector<Variable> scope_variables;
+
+    Scope(int start, int end) {
+        line_block = {start, end};
+    }
 
     Scope() {
         line_block = {-1, -1};
@@ -41,6 +55,12 @@ public:
     string name;
     Scope scope;
     string expression;
+
+    Command(const string type, const string name, const string expression) {
+        this->type = type;
+        this->name = name;
+        this->expression = expression;
+    }
 
     Command() {
         type = "null";

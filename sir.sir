@@ -1,0 +1,4 @@
+n = 5
+print n
+n = 20 + n
+print 3 + (n = n + n)

@@ -1,6 +1,7 @@
 #include "Sir.h"
 
-SirGlobal sirGlobal;
+vector<string> COMMAND_LINES;
+
 
 /**
  * @brief Run the Sir# interpreter console.
@@ -35,9 +36,13 @@ void runConsole() {
 }
 
 int main(int argc, char *argv[]) {
-    if(argc > 1) 
-        readfile(argv[1]);
-    else
-        runConsole();
+    if(argc > 1) {
+        COMMAND_LINES = readfile(argv[1]);
+        Command command("block", "scope", "");
+        command.scope = Scope(0, COMMAND_LINES.size());
+        command.runCommand();
+    }
+    else runConsole();
+
     return 0;
 }

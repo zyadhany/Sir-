@@ -7,16 +7,6 @@
 
 using namespace std;
 
-struct SirGlobal
-{
-    int line;
-
-    SirGlobal()
-    {
-        line = 0;
-    }
-};
-extern SirGlobal sirGlobal;
 
 /** Interpting **/
 void interpret(const string &line);

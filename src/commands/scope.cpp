@@ -1,5 +1,8 @@
 #include "command.h"
 
 void Scope::runScope() {
-    throw "Not implemented";   
+    for (int i = line_block.first; i < line_block.second; i++) {
+        Command command(COMMAND_LINES[i]);
+        command.runCommand();
+    }
 }

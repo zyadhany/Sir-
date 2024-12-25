@@ -57,5 +57,9 @@ Variable Command::runExpression() {
 
 
 Variable Command::runBlock() {
-    throw runtime_error("Not implemented");
+    auto it = BLOCK_FUNCTIONS.find(name);
+    if (it == BLOCK_FUNCTIONS.end()) {
+        throw runtime_error("Invalid block function: " + name);
+    }
+    return it->second(*this);
 }
