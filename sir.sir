@@ -1,6 +1,1 @@
-sir = 10000000
-if sir > 50
-print "BIG SIR"
-else
-print "SMALL SIR"
-end
+print "خخخخخخخ"

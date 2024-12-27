@@ -2,8 +2,12 @@ import tkinter as tk
 from tkinter import scrolledtext, messagebox
 import subprocess
 import os
+import platform
 
-exe_path = os.path.join(os.getcwd(), "sss.exe")
+if platform.system() == "Windows":
+    exe_path = os.path.join(os.getcwd(), "sss.exe")
+else:
+    exe_path = os.path.join(os.getcwd(), "./sss.exe")
 def run_code():
     output_display.delete("1.0", tk.END)
     code = editor.get("1.0", tk.END)
