@@ -1,0 +1,9 @@
+x = 30
+y = 25
+z = 40
+print "begin"
+if x <= y && x <= z
+    print x
+else
+    print y
+end
