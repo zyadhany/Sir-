@@ -3,7 +3,7 @@ from tkinter import scrolledtext, messagebox
 import subprocess
 import os
 
-exe_path = os.path.join(os.getcwd(), "sir.exe")
+exe_path = os.path.join(os.getcwd(), "sss.exe")
 def run_code():
     output_display.delete("1.0", tk.END)
     code = editor.get("1.0", tk.END)
