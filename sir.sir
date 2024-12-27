@@ -1,9 +1,5 @@
-x = 30
-y = 25
-z = 40
-print "begin"
-if x <= y && x <= z
-    print x
-else
-    print y
+i = 0
+while i < 5
+print "sir"
+i = i + 1
 end
