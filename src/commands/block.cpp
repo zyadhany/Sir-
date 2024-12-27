@@ -37,7 +37,7 @@ Variable block_if(Command &command) {
     if (!cond.isNull()) {
         return block_scope(condtionTrue);
     }
-    if (command.type != "if") return Variable();
+    if (command.name != "if") return Variable();
     return block_scope(condtionFalse);
 }
 
