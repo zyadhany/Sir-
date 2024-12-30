@@ -176,14 +176,12 @@ root.bind("<Control-plus>", increase_font_size)  # Ctrl +
 root.bind("<Control-minus>", decrease_font_size)  # Ctrl -
 
 
-# Function to terminate running process
 def terminate_process(event=None):
     global current_process
     if current_process:
         try:
-            # Send SIGTERM first
             current_process.terminate()
-            current_process.wait(timeout=2)  # Wait to ensure it terminates gracefully
+            current_process.wait(timeout=2)
         except subprocess.TimeoutExpired:
             if platform.system() == "Windows":
                 current_process.kill()
