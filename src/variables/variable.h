@@ -41,6 +41,7 @@ Variable add_String(const Variable &v1, const Variable &v2);
 Variable sub_String(const Variable &v1, const Variable &v2);
 Variable mul_str_num(const Variable &v1, const Variable &v2);
 Variable mul_num_str(const Variable &v1, const Variable &v2);
+Variable equal_String(const Variable &v1, const Variable &v2);
 
 /** Operator **/
 struct operator_k

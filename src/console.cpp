@@ -35,14 +35,10 @@ void runConsole() {
 }
 
 int main(int argc, char *argv[]) {
-<<<<<<< HEAD
 
-    runConsole();
-=======
     if(argc > 1) 
         readfile(argv[1]);
     else
         runConsole();
->>>>>>> 31004fbd7950bb3c48f88516d82106175f200643
     return 0;
 }

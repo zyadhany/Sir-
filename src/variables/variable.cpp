@@ -35,6 +35,7 @@ map<operator_k, Variable (*)(const Variable&, const Variable&)> TYPEOPRATOR = {
     {operator_k("<=", "num", "num"), less_equal_Number},
     {operator_k(">=", "num", "num"), greater_equal_Number},
     {operator_k("==", "num", "num"), equal_Number},
+    {operator_k("==", "str", "str"), equal_String},
     {operator_k("!=", "num", "num"), not_equal_Number},
     {operator_k("&&", "num", "num"), Logical_and},
     {operator_k("||", "num", "num"), Logical_or},

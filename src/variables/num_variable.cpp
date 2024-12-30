@@ -581,3 +581,14 @@ Variable Logical_or(const Variable &v1, const Variable &v2) {
     bool res = ((!v1.isNull()) || !(v2.isNull()));
     return getNumVariable(res ? "1" : "0");
 }
+
+
+Variable equal_String(const Variable &v1, const Variable &v2) {
+    if (v1.getType() != "str") throw runtime_error("v1 is not a string");
+    if (v2.getType() != "str") throw runtime_error("v2 is not a string");
+
+    string res;
+    string str1 = v1.getValue();
+    string str2 = v2.getValue();
+    return str1 == str2;
+}
