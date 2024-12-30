@@ -1,4 +1,6 @@
-x = "amed"
-if x == "ahmed"
-print "yes"
+x = 10
+print x
+
+while x < 100
+print x
 end
