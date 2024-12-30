@@ -40,6 +40,7 @@ int main(int argc, char *argv[]) {
         COMMAND_LINES = readfile(argv[1]);
         Command command("block", "scope", "");
         command.scope = Scope(0, COMMAND_LINES.size());
+
         command.runCommand();
     }
     else runConsole();

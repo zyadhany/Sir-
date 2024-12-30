@@ -1,14 +1,1 @@
-n = 3
-m = 4
-if n > m
-print 5
-
-if 1 == 2
-print 1
-else 
-print 2
-end
-
-else 
-print 4
-end
+print ("s)ir)" * 3) * 10

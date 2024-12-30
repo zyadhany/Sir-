@@ -1,0 +1,35 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+	  {
+		"label": "Build C++ Incrementally",
+		"type": "shell",
+		"command": "g++",
+		"args": [
+		  "-c", "./src/*.cpp", "-o", "./build/main.o",
+		  "-c", "./src/commands/*.cpp", "-o", "./build/commands.o",
+		  "-c", "./src/variables/*.cpp", "-o", "./build/variables.o"
+		],
+		"group": {
+		  "kind": "build",
+		  "isDefault": true
+		},
+		"problemMatcher": []
+	  },
+	  {
+		"label": "Link C++",
+		"type": "shell",
+		"command": "g++",
+		"args": [
+		  "./build/*.o",
+		  "-o", "e.exe"
+		],
+		"group": {
+		  "kind": "build",
+		  "isDefault": false
+		},
+		"problemMatcher": []
+	  }
+	]
+  }
+  

@@ -8,8 +8,12 @@
 bool IsValidBarnaces(string expresion)
 {
     int barnaces = 0;
+    bool opendouble = false;
     for (int i = 0; i < expresion.size(); i++)
     {
+        if (expresion[i] == '\"' && expresion[i - 1] != '\\') opendouble = !opendouble;
+        if (opendouble) continue;
+
         if (expresion[i] == '(')
         {
             barnaces++;
@@ -130,8 +134,18 @@ Variable::Variable(const string &expresion){
         {
             int barnaces = 1;
             i++;
+            
+            bool opendouble = false;
+
             while (barnaces)
             {
+                if (exp[i] == '\"' && exp[i - 1] != '\\') opendouble = !opendouble;
+
+                if (opendouble) {
+                    i++;
+                    continue;
+                }
+        
                 if (exp[i] == '(')
                     barnaces++;
                 else if (exp[i] == ')')
@@ -147,12 +161,11 @@ Variable::Variable(const string &expresion){
         if (exp[i] == '\"')
         {
             i++;
-            while (exp[i] != '\"' && exp[i - 1] != '\\')
+            while (exp[i] != '\"' || exp[i - 1] == '\\')
                 i++;
-            string temp = exp.substr(at, i - at);
+            string temp = exp.substr(at, i - at + 1);
             vars.push_back(Variable(temp));
-            at = i;
-            i--;
+            at = i + 1;
             continue;
         }
         if (i == at && exp[i] == '-') continue;
@@ -170,7 +183,7 @@ Variable::Variable(const string &expresion){
         nxopp = exp.substr(i, 1);
         if (OPPRATORS.find(nxopp) != OPPRATORS.end())
         {
-            vars.push_back(Variable(exp.substr(at, i - at)));
+            if (i != at) vars.push_back(Variable(exp.substr(at, i - at)));
             ops.push_back(nxopp);
             at = i + 1;
         } 
@@ -178,5 +191,6 @@ Variable::Variable(const string &expresion){
 
     if (at < exp.size()) vars.push_back(Variable(exp.substr(at, exp.size() - at)));
     
+
     *this = execute(ops, vars);
 }
