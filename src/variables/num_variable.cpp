@@ -590,5 +590,5 @@ Variable equal_String(const Variable &v1, const Variable &v2) {
     string res;
     string str1 = v1.getValue();
     string str2 = v2.getValue();
-    return str1 == str2;
+    return Variable("temp", "num", to_string(str1 == str2));
 }

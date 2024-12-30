@@ -5,6 +5,8 @@ import tkinter.font as tkFont
 import subprocess
 import os
 import platform
+import re
+
 
 if platform.system() == "Windows":
     exe_path = os.path.join(os.getcwd(), "sss.exe")
@@ -91,6 +93,45 @@ editor = scrolledtext.ScrolledText(
     main_frame, wrap=tk.WORD, width=80, height=20, background="#222", foreground="#fff", insertbackground="white"
 )
 editor.pack(fill=tk.BOTH, expand=True, pady=(0, 10))
+
+
+def highlight_syntax():
+    code = editor.get("1.0", tk.END)
+
+    # Clear previous highlights
+    editor.tag_remove("keyword", "1.0", tk.END)
+    editor.tag_remove("string", "1.0", tk.END)
+
+    # Define the font and colors for highlighting
+    editor.tag_config("keyword", foreground="darkorange", font=("Courier", font_size, "bold"))
+    editor.tag_config("string", foreground="lightgreen", font=("Courier", font_size))
+
+    keywords = ["if", "while", "end"]
+    for keyword in keywords:
+        start_idx = "1.0"
+        while True:
+            # Ensure to use word boundary with \b and escape keyword properly
+            start_idx = editor.search(rf'\b{re.escape(keyword)}\b', start_idx, stopindex=tk.END, regexp=True)
+            if not start_idx:
+                break
+            end_idx = f"{start_idx}+{len(keyword)}c"
+            editor.tag_add("keyword", start_idx, end_idx)
+            start_idx = end_idx
+
+    # Highlight string literals (e.g., "ssss")
+    string_pattern = r'"([^"]*)"'
+    for match in re.finditer(string_pattern, code):
+        start_idx = match.start()
+        end_idx = match.end()
+        # Convert the string position to the editor's text position
+        start_text_index = editor.index(f"1.0 + {start_idx}c")
+        end_text_index = editor.index(f"1.0 + {end_idx}c")
+        editor.tag_add("string", start_text_index, end_text_index)
+
+
+editor.bind('<KeyRelease>', lambda event: highlight_syntax())
+
+
 
 # Run button
 run_button = ttk.Button(main_frame, text="Run Code", command=run_code)
