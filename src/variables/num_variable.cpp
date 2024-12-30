@@ -1,7 +1,7 @@
 #include "variable.h"
 
 Variable getNumVariable(string num) {
-    return Variable("temp", "num", num);
+    return Variable("null", "num", num);
 }
 
 string removeLeadingZeros(const string& num) {

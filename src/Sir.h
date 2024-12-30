@@ -7,16 +7,6 @@
 
 using namespace std;
 
-struct SirGlobal
-{
-    int line;
-
-    SirGlobal()
-    {
-        line = 0;
-    }
-};
-extern SirGlobal sirGlobal;
 
 /** Interpting **/
 void interpret(const string &line);
@@ -29,8 +19,7 @@ void executeToken(vector<string> &tokens);
 // double MakeOperation(string expresion); 
 
 /** Parsing **/
-vector<string> parseCommandLine(const string &line);
 vector<string> readfile(const string &filename);
-string parseLine(string line);
+string parseline(string line);
 
 #endif // SIR_H

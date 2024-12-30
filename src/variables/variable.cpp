@@ -12,7 +12,8 @@ map<string, int> OPPRATORS = {
     {"^", 8},
     {"|", 9},
     {"&&", 10},
-    {"||", 11}
+    {"||", 11},
+    {"=", 12}
 };
 
 map<operator_k, Variable (*)(const Variable&, const Variable&)> TYPEOPRATOR = {
@@ -53,7 +54,8 @@ Variable GetVariable(string name){
         return variables[name];
     }
 
-    throw runtime_error("Variable " + name + " not found");
+    // throw runtime_error("Variable " + name + " not found");
+    return Variable(name, "null", "");
 }
 
 Variable SetVariable(Variable var){
@@ -62,6 +64,13 @@ Variable SetVariable(Variable var){
 }
 
 Variable MakeOperation(const Variable &v1, const Variable &v2, const string &op) {
+    if (op == "=") {
+        Variable temp = v2;
+        if (v1.name == "null") throw runtime_error("invalid assignment");
+        temp.name = v1.name;
+        return SetVariable(temp);
+    }
+
     operator_k key(op, v1.getType(), v2.getType());
     if (TYPEOPRATOR.find(key) != TYPEOPRATOR.end()) {
         return TYPEOPRATOR[key](v1, v2);
