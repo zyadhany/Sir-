@@ -39,14 +39,14 @@ Welcome to Sir#, a custom programming language! This project was developed by **
   
   Example:
   ```
-  print "The result is"
+  print x
   ```
 
 - **Big Integer Support:** Sir# supports operations on very large numbers without size restriction, treating numbers as strings internally.
 
 ## Syntax
 
-- **Variables:** Declared and assigned using `=`, similar to Python.
+- **Variables:** Declared and assigned using `=`.
   
   Example:
   ```
@@ -99,7 +99,3 @@ We have developed a basic editor for Sir#. Simply run the provided Python file, 
 - **Ramy Rashad**
 - **Ahmed El Gendy**
 - **Zyad Hany**
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
