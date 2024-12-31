@@ -1,68 +1,105 @@
 
-# Sir#
+# Sir# Programming Language
 
-Sir# (pronounced "Sir Sharp") is a new, versatile, and powerful programming language designed to simplify complex programming tasks while offering powerful features for developers. It is inspired by popular languages like C++
-but introduces unique features for modern software development.
-
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Features](#features)
-- [Installation](#installation)
-- [Syntax Overview](#syntax-overview)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Introduction
-
-Sir# is designed with simplicity and readability in mind. It provides developers with an easy-to-learn syntax With Sir#, you can write clean and efficient code, whether you're a beginner or an experienced programmer.
+Welcome to Sir#, a custom programming language! This project was developed by **Ramy Rashad**, **Ahmed El Gendy**, and **Zyad Hany**. Sir# offers an easy-to-use syntax inspired by Python, focusing on handling basic operations, variables, conditions, and loops, with added support for large integer calculations.
 
 ## Features
 
-- **Easy-to-Learn Syntax**: Sir# has a syntax that is intuitive and straightforward, ideal for beginners.
-- **Strong Typing with Flexibility**: Enjoy the benefits of both static and dynamic typing.
-- **Cross-Platform**: Write once, run anywhere. Sir# supports cross-platform development for Windows, macOS, and Linux.
-- **Concurrency Support**: Built-in support for concurrent programming, making it easy to write efficient and scalable programs.
-- **Rich Standard Library**: Access a wide range of utilities for file handling, networking, and data processing.
+- **Variable Declaration & Assignment:** Syntax similar to Python. Declare and assign variables easily.
+  
+  Example:
+  ```
+  x = 10
+  y = "Hello, World"
+  ```
 
-## Installation
+- **Conditional Statements:** We support `if` and `else` conditions, each block ending with the `end` keyword.
+  
+  Example:
+  ```
+  if x > 5
+      print x
+  else
+      print "x is less than or equal to 5"
+  end
+  ```
 
-To install Sir#, follow these steps:
+- **Loops:** We currently support `while` loops with a similar structure to Python but with the `end` keyword to close the loop.
+  
+  Example:
+  ```
+  x = 0
+  while x < 5
+      print x
+      x = x + 1
+  end
+  ```
 
-1. Clone the Sir# repository from GitHub:  
-   `git clone https://github.com/yourusername/sir-sharp.git`
+- **Print Function:** Use the `print` keyword to output variables, strings, or operations.
+  
+  Example:
+  ```
+  print "The result is"
+  ```
 
-2. Navigate to the newly cloned `sir-sharp` directory:  
-   `cd sir-sharp`
-## Syntax Overview
+- **Big Integer Support:** Sir# supports operations on very large numbers without size restriction, treating numbers as strings internally.
 
-### Variables
-```sirsharp
-num age = 25
-string name = "John"
-```
+## Syntax
 
-### Conditional Statements
-```sirsharp
-if age > 18 
-    print("You are an adult.")
-else 
-    print("You are a minor.")
-endif
-```
+- **Variables:** Declared and assigned using `=`, similar to Python.
+  
+  Example:
+  ```
+  variable_name = value
+  ```
 
-### Loops
-```sirsharp
-while a > 5
-    print("a")
-    a = a - 1
-endloop
-```
+- **If Statements:** Use `if` and `else` for conditional logic. Blocks must end with `end`.
+  
+  Example:
+  ```
+  if condition
+      # code block
+  else
+      # code block
+  end
+  ```
 
-## Contributing
+- **While Loops:** Use `while` for loops. Use `end` to close the loop.
+  
+  Example:
+  ```
+  while condition
+      # code block
+  end
+  ```
 
-We welcome contributions from the community! If you want to help improve Sir#, please fork the repository, create a new branch, and submit a pull request.
+- **Printing:** Use `print` to output variables, strings, or operations.
+  
+  Example:
+  ```
+  print "Hello, World"
+  ```
+
+## Handling Big Integers
+
+Sir# can handle large integer values by treating numbers as strings internally and applying operations without size constraints.
+
+## Basic Editor
+
+We have developed a basic editor for Sir#. Simply run the provided Python file, write your code, and execute it in the editor.
+
+## Getting Started
+
+1. Clone the repository.
+2. Install dependencies (if required).
+3. Run the editor to start writing and running Sir# code.
+
+## Contributors
+
+- **Ramy Rashad**
+- **Ahmed El Gendy**
+- **Zyad Hany**
 
 ## License
 
-Sir# is released under the MIT License.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
